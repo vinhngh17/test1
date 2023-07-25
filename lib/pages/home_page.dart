@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text('Diem cua ban: ${_userPoint}'),
+                Text('Diem cua ban: $_userPoint'),
               ],
             ),
           ),
@@ -55,7 +54,7 @@ class _HomePageState extends State<HomePage> {
             ),
           if (userString != null)
             Text(
-              'Ban$userString',
+              '$userString',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
@@ -73,12 +72,12 @@ class _HomePageState extends State<HomePage> {
                     int bot = botPlay();
                     bool b = result(value, bot);
                     botString = printRs(bot);
-                    userString = printRs(value);
+                    userString = 'ban chon keo';
                     count++;
                     if (value != bot) {
                       (b == true) ? _userPoint += 1 : _botPoint += 1;
                     }
-                    if (count > 8) _showMaterialDialog(_userPoint);
+                    if (count == 9) _showMaterialDialog(_userPoint);
                     setState(() {});
                   },
                   child: const Text("Keo")),
@@ -88,12 +87,12 @@ class _HomePageState extends State<HomePage> {
                     int bot = botPlay();
                     bool b = result(value, bot);
                     botString = printRs(bot);
-                    userString = printRs(value);
+                    userString = 'Ban chon bua';
                     count++;
                     if (value != bot) {
                       (b == true) ? _userPoint += 1 : _botPoint += 1;
                     }
-                    if (count > 8) _showMaterialDialog(_userPoint);
+                    if (count == 9) _showMaterialDialog(_userPoint);
                     setState(() {});
                   },
                   child: const Text("Bua")),
@@ -103,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                     int bot = botPlay();
                     bool b = result(value, bot);
                     botString = printRs(bot);
-                    userString = printRs(bot);
+                    userString = 'ban chon la';
                     count++;
                     if (value != bot) {
                       (b == true) ? _userPoint += 1 : _botPoint += 1;
@@ -141,9 +140,10 @@ class _HomePageState extends State<HomePage> {
       return " chon: keo";
     } else if (rs == 1) {
       return " chon: bua";
-    } else {
+    } else if (rs == 2) {
       return " chon: la";
     }
+    return "";
   }
 
   void _showMaterialDialog(int uPoint) {
@@ -155,7 +155,11 @@ class _HomePageState extends State<HomePage> {
             title: Text(s),
             content: Text('Diem cua ban: ${uPoint} '),
             actions: <Widget>[
-              TextButton(onPressed: () {}, child: const Text('Close')),
+              TextButton(
+                  onPressed: () {
+                    // exit(0);
+                  },
+                  child: const Text('Close')),
               TextButton(
                 onPressed: () {
                   setState(() {
