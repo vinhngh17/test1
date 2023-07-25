@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -157,7 +158,14 @@ class _HomePageState extends State<HomePage> {
               TextButton(onPressed: () {}, child: const Text('Close')),
               TextButton(
                 onPressed: () {
-                  dispose();
+                  setState(() {
+                    count = 0;
+                    _userPoint = 0;
+                    _botPoint = 0;
+                    botString = "";
+                    userString = "";
+                    Navigator.pop(context);
+                  });
                 },
                 child: const Text('Choi lai'),
               )
