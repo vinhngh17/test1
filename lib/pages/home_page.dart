@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,8 +13,8 @@ class _HomePageState extends State<HomePage> {
   int _botPoint = 0;
   late int value;
   int count = 0;
-  String botString = "";
-  String userString = "";
+  String? botString;
+  String? userString;
 
   @override
   Widget build(BuildContext context) {
@@ -77,11 +76,8 @@ class _HomePageState extends State<HomePage> {
                     count++;
                     if (value != bot) {
                       (b == true) ? _userPoint += 1 : _botPoint += 1;
-                      print("bot play: ${bot}");
-                      print("user point: ${_userPoint}");
-                      print("bot point: ${_botPoint}");
                     }
-                    if (count > 9) _showMaterialDialog(_userPoint);
+                    if (count > 8) _showMaterialDialog(_userPoint);
                     setState(() {});
                   },
                   child: const Text("Keo")),
@@ -95,11 +91,8 @@ class _HomePageState extends State<HomePage> {
                     count++;
                     if (value != bot) {
                       (b == true) ? _userPoint += 1 : _botPoint += 1;
-                      print("bot play: ${bot}");
-                      print("user point: ${_userPoint}");
-                      print("bot point: ${_botPoint}");
                     }
-                    if (count > 9) _showMaterialDialog(_userPoint);
+                    if (count > 8) _showMaterialDialog(_userPoint);
                     setState(() {});
                   },
                   child: const Text("Bua")),
@@ -113,11 +106,8 @@ class _HomePageState extends State<HomePage> {
                     count++;
                     if (value != bot) {
                       (b == true) ? _userPoint += 1 : _botPoint += 1;
-                      print("bot play: ${bot}");
-                      print("user point: ${_userPoint}");
-                      print("bot point: ${_botPoint}");
                     }
-                    if (count > 9) _showMaterialDialog(_userPoint);
+                    if (count > 8) _showMaterialDialog(_userPoint);
                     setState(() {});
                   },
                   child: const Text("Bao")),
@@ -164,10 +154,12 @@ class _HomePageState extends State<HomePage> {
             title: Text(s),
             content: Text('Diem cua ban: ${uPoint} '),
             actions: <Widget>[
-              TextButton(onPressed: () {}, child: Text('Close')),
+              TextButton(onPressed: () {}, child: const Text('Close')),
               TextButton(
-                onPressed: () {},
-                child: Text('Choi lai'),
+                onPressed: () {
+                  dispose();
+                },
+                child: const Text('Choi lai'),
               )
             ],
           );
